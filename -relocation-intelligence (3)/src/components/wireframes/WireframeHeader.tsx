@@ -1,0 +1,130 @@
+import React from 'react';
+import { Compass, ArrowRight, Bell, User, Plus } from 'lucide-react';
+
+interface WireframeHeaderProps {
+  activeNav?: string;
+  onNavigate?: (screenIndex: number) => void;
+  showProfile?: boolean;
+  fromCity?: string;
+  destCityName?: string;
+  annualLpa?: number;
+  onStartNewPlan?: () => void;
+}
+
+export const WireframeHeader: React.FC<WireframeHeaderProps> = ({
+  activeNav = 'Dashboard',
+  onNavigate,
+  showProfile = true,
+  fromCity = 'Lucknow',
+  destCityName = 'Bengaluru',
+  annualLpa = 28,
+  onStartNewPlan,
+}) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
+  const navItems = [
+    { label: 'Overview', screen: 1 },
+    { label: 'Dashboard', screen: 2 },
+    { label: 'City & Office', screen: 3 },
+    { label: 'Compensation', screen: 5 },
+    { label: 'Corridors', screen: 7 },
+    { label: 'Blueprint', screen: 11 },
+    { label: 'Saved Plans', screen: 12 },
+  ];
+
+  return (
+    <header className="w-full bg-white border-b border-[#E2E5E9] px-4 sm:px-8 py-3.5 flex items-center justify-between shrink-0 select-none sticky top-0 z-40">
+      {/* Left: Brand Identity */}
+      <div className="flex items-center gap-4 sm:gap-6">
+        <div
+          onClick={() => onNavigate?.(1)}
+          className="flex items-center gap-2.5 cursor-pointer group"
+        >
+          {/* Logo Mark */}
+          <div className="w-7 h-7 rounded-lg bg-[#18231E] flex items-center justify-center text-white">
+            <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <div className="flex flex-col">
+            <span className="font-bold text-sm tracking-tight text-[#18231E] leading-tight">
+              Worthwhile
+            </span>
+            <span className="text-[9px] font-mono tracking-wider uppercase text-[#176B50] font-semibold">
+              Relocation Intelligence
+            </span>
+          </div>
+        </div>
+
+        {/* Global Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-1 ml-4 pl-4 border-l border-[#E2E5E9]">
+          {navItems.map((item) => {
+            const isActive = activeNav.toLowerCase() === item.label.toLowerCase();
+            return (
+              <button
+                key={item.label}
+                type="button"
+                onClick={() => onNavigate?.(item.screen)}
+                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
+                  isActive
+                    ? 'bg-[#E8F4EF] text-[#176B50] font-semibold'
+                    : 'text-[#5F6A63] hover:text-[#18231E] hover:bg-[#F3F4F6]'
+                }`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </nav>
+      </div>
+
+      {/* Right: Active Relocation Anchor & Utilities */}
+      <div className="flex items-center gap-2 sm:gap-3">
+        {showProfile && (
+          <div
+            onClick={() => onNavigate?.(2)}
+            className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#F8F9FA] hover:bg-[#F0F4F2] border border-[#E2E5E9] text-xs cursor-pointer transition-colors"
+            title="Open Active Evaluation Dashboard"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#176B50] animate-pulse" />
+            <span className="text-[#5F6A63] font-mono">ACTIVE:</span>
+            <span className="font-semibold text-[#18231E]">
+              {fromCity} ➔ {destCityName}
+            </span>
+            <span className="text-[#8C9690]">•</span>
+            <span className="font-mono text-[#176B50] font-medium">₹{annualLpa} LPA</span>
+          </div>
+        )}
+
+        <button
+          type="button"
+          onClick={() => onNavigate?.(12)}
+          className="p-2 rounded-lg text-[#5F6A63] hover:text-[#18231E] hover:bg-[#F3F4F6] relative cursor-pointer"
+          title="Saved Plans Portfolio"
+        >
+          <Bell className="w-4 h-4" />
+          <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-[#176B50] rounded-full" />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            if (onStartNewPlan) {
+              onStartNewPlan();
+            } else {
+              onNavigate?.(3);
+            }
+          }}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#18231E] hover:bg-[#176B50] text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer"
+        >
+          <Plus className="w-3.5 h-3.5" />
+          <span>New Move</span>
+        </button>
+
+        <div className="w-8 h-8 rounded-lg bg-[#E8F4EF] border border-[#D0E2D8] flex items-center justify-center text-xs font-bold text-[#176B50]">
+          AK
+        </div>
+      </div>
+    </header>
+  );
+};
