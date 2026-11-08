@@ -67,9 +67,9 @@ export const Screen12SavedPlans: React.FC<WireframeScreenProps> = ({
         annualLpa: 26,
         inHandSalary: 163000,
         monthlySurplus: 114000,
-        status: 'Draft · Workplace Anchor',
+        status: 'Draft · Workplace Location',
         statusColor: 'text-[#C2410C] bg-[#FFEDD5]',
-        stage: 'Stage 2 of 6',
+        stage: 'Stage 1 of 5',
         progress: 33,
         updated: '4 days ago',
         isActive: false,
@@ -122,7 +122,7 @@ export const Screen12SavedPlans: React.FC<WireframeScreenProps> = ({
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 max-w-[1440px] w-full mx-auto p-6 sm:p-8 flex flex-col justify-between space-y-6">
+      <div className="flex-1 max-w-[1440px] w-full mx-auto p-6 sm:p-8 md:p-10 flex flex-col justify-between space-y-7">
         <div>
           {/* Header & Primary CTAs */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E2E5E9] gap-3">
@@ -244,11 +244,11 @@ export const Screen12SavedPlans: React.FC<WireframeScreenProps> = ({
         <div className="pt-6 border-t border-[#E2E5E9] mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <button
             type="button"
-            onClick={() => onNavigate(11)}
+            onClick={() => onNavigate(2)}
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-[#E2E5E9] text-xs font-semibold text-[#5F6A63] hover:text-[#18231E] transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Previous: Relocation Blueprint</span>
+            <span>Previous: Executive Dashboard</span>
           </button>
 
           <button

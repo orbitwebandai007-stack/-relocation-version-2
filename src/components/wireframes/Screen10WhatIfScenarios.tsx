@@ -56,7 +56,7 @@ export const Screen10WhatIfScenarios: React.FC<WireframeScreenProps> = ({
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 max-w-[1440px] w-full mx-auto p-6 sm:p-8 flex flex-col justify-between space-y-6">
+      <div className="flex-1 max-w-[1440px] w-full mx-auto p-6 sm:p-8 md:p-10 flex flex-col justify-between space-y-7">
         <div>
           {/* Step Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E2E5E9] gap-3">
@@ -70,15 +70,45 @@ export const Screen10WhatIfScenarios: React.FC<WireframeScreenProps> = ({
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 bg-[#E8F4EF] text-[#176B50] text-xs font-semibold rounded-lg">
-                Base Case: {chosenNeighbourhood.a[0]} ({formatINR(baselineSurplus)}/mo surplus)
+              <span className="px-3 py-1 bg-[#E8F4EF] text-[#176B50] text-xs font-semibold rounded-lg font-mono">
+                Base Case: {chosenNeighbourhood.a[0]} ({formatINR(baselineSurplus)}/mo)
               </span>
             </div>
           </div>
 
-          <p className="text-xs text-[#5F6A63] mt-3">
+          <p className="text-xs text-[#5F6A63] mt-2.5">
             Simulate how changes in office policy (hybrid vs 5-day), annual rent inflation, and flatmate sharing affect your 3-year wealth accumulation in {currentCityData.name}.
           </p>
+
+          {/* Action Navigation Bar in Clear View below Step & Subheading */}
+          <div className="mt-5 mb-2 px-5 py-3.5 bg-white border border-[#E2E5E9] rounded-xl shadow-2xs flex flex-wrap items-center justify-between gap-4">
+            <button
+              type="button"
+              onClick={() => onNavigate(9)}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#E2E5E9] bg-white text-xs font-semibold text-[#5F6A63] hover:text-[#18231E] hover:bg-[#F8F9FA] transition-colors cursor-pointer shadow-2xs active:scale-[0.98]"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Previous: Financial Analysis</span>
+            </button>
+
+            <div className="flex items-center gap-3 text-xs">
+              <span className="text-[#5F6A63] hidden sm:inline">Simulated 3-Yr Wealth:</span>
+              <span className="font-bold text-[#176B50] bg-[#E8F4EF] px-3 py-1.5 rounded-lg font-mono text-xs border border-[#176B50]/20">
+                {formatINR(wealth3Yr)}
+              </span>
+              <span className="text-[#8C9690] hidden sm:inline">•</span>
+              <span className="text-[#5F6A63] hidden sm:inline">Scenario Surplus: <strong className="text-[#18231E] font-mono">{formatINR(adjustedMonthlySurplus)}/mo</strong></span>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => onNavigate(11)}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#18231E] text-white text-xs font-semibold hover:bg-[#176B50] transition-colors cursor-pointer shadow-xs active:scale-[0.98]"
+            >
+              <span>Proceed to Relocation Blueprint</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
 
           {/* Interactive Scenario Controls Bar */}
           <div className="mt-6 bg-white border border-[#E2E5E9] rounded-xl p-5 shadow-2xs">
@@ -279,27 +309,6 @@ export const Screen10WhatIfScenarios: React.FC<WireframeScreenProps> = ({
               </button>
             </div>
           </div>
-        </div>
-
-        {/* Footer Navigation */}
-        <div className="pt-6 border-t border-[#E2E5E9] mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <button
-            type="button"
-            onClick={() => onNavigate(9)}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-[#E2E5E9] text-xs font-semibold text-[#5F6A63] hover:text-[#18231E] transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Previous: Financial Waterfall</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onNavigate(11)}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#18231E] text-white text-xs font-semibold hover:bg-[#176B50] transition-colors cursor-pointer shadow-xs"
-          >
-            <span>Proceed to Relocation Blueprint Report</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
         </div>
       </div>
     </div>

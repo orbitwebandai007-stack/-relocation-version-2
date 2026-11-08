@@ -64,7 +64,7 @@ export const WireframeGallery: React.FC<WireframeGalleryProps> = (props) => {
     { id: 1, title: 'Landing Page & Value Proposition', subtitle: 'Public introduction, CTC trap, and entry route selector', slug: 'landing_page' },
     { id: 2, title: 'Main Relocation Dashboard', subtitle: 'Active plan overview, 4 core KPIs, and 6-stage tracker', slug: 'relocation_dashboard' },
     { id: 3, title: 'Destination City Selection', subtitle: '6-metro comparative matrix with deposit standards', slug: 'destination_city_selection' },
-    { id: 4, title: 'Workplace Location Anchor', subtitle: 'Office anchor, transit nodes & commute geometry', slug: 'workplace_location_selection' },
+    { id: 4, title: 'Workplace Location Selection', subtitle: 'Office location, transit nodes & commute geometry', slug: 'workplace_location_selection' },
     { id: 5, title: 'Compensation & Commitments', subtitle: 'CTC to post-tax take-home, EMI debt & savings targets', slug: 'salary_commitments_savings' },
     { id: 6, title: 'Lifestyle & Housing Parameters', subtitle: 'Housing tier, commute modes & discretionary tier', slug: 'lifestyle_accommodation_preferences' },
     { id: 7, title: 'Neighbourhood Discovery & Map', subtitle: 'Ranked locality cards, isochrones & OSRM routing', slug: 'neighbourhood_discovery_map' },

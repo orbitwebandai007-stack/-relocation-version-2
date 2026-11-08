@@ -45,6 +45,7 @@ export const BASE: Record<string, number[]> = {
   blr: [8000, 6000, 11000, 18000, 28000],
   ncr: [8500, 6000, 11000, 18000, 28000],
   bom: [11000, 9000, 16000, 26000, 42000],
+  mum: [11000, 9000, 16000, 26000, 42000],
   pun: [7000, 5000, 9000, 15000, 24000],
   hyd: [7000, 5000, 9500, 15000, 24000],
   che: [7000, 5000, 9500, 15000, 24000],
@@ -248,6 +249,13 @@ export const CITIES: Record<string, CityData> = {
   },
 };
 
+// Aliases for Mumbai metro key compatibility ('mum' & 'bom')
+CITIES.mum = {
+  ...CITIES.bom,
+  key: 'mum',
+  name: 'Mumbai',
+};
+
 // Key Metro and Transit Stations across Indian hubs
 export const TRANSIT_STATIONS: Record<string, TransitData[]> = {
   blr: [
@@ -291,6 +299,8 @@ export const TRANSIT_STATIONS: Record<string, TransitData[]> = {
     ['Koyambedu Metro', 13.0732, 80.1943],
   ],
 };
+
+TRANSIT_STATIONS.mum = TRANSIT_STATIONS.bom;
 
 // Property mapping: [Label, Accommodation category, Base index (0-4), Multiplier]
 export const PROPERTIES: Record<

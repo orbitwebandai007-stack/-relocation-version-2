@@ -47,15 +47,22 @@ export const Screen01Landing: React.FC<WireframeScreenProps> = ({
   const inHandMonthly = lpaToMonthlyInHand(annualLpa);
 
   const handleStartMove = () => {
+    const chosenCityData = CITIES[destCity] || CITIES.blr;
+    const defaultHub = chosenCityData.hubs[0];
     onUpdateState({
       from: fromCity.trim() || 'Lucknow',
       city: destCity,
+      wp: {
+        name: defaultHub[0],
+        lat: defaultHub[1],
+        lng: defaultHub[2],
+      },
       annualLpa: annualLpa,
       sal: inHandMonthly,
       flowPhase: 'workplace_select',
       journeyStartedAt: Date.now(),
     });
-    onNavigate(3); // Navigate to Screen 3 (City Selection)
+    onNavigate(4); // Navigate directly to Workplace Location Selection (Screen 4)
   };
 
   // Interactive showcase areas for Bengaluru & Delhi NCR (Matching user's attached section screenshot)
@@ -237,7 +244,7 @@ export const Screen01Landing: React.FC<WireframeScreenProps> = ({
                   <span>INITIALIZE CAREER MOVE</span>
                 </div>
                 <span className="text-[10px] font-mono text-[#176B50] bg-[#E8F4EF] px-2 py-0.5 rounded font-semibold">
-                  STAGE 01 / 06
+                  STAGE 01 / 05
                 </span>
               </div>
 

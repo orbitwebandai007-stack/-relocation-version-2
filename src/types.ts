@@ -1,6 +1,6 @@
 import { RouteInfo } from './services/routingService';
 
-export type CityKey = 'blr' | 'ncr' | 'bom' | 'pun' | 'hyd' | 'che' | string;
+export type CityKey = 'blr' | 'ncr' | 'bom' | 'mum' | 'pun' | 'hyd' | 'che' | string;
 
 export type AccommodationType = 'alone' | 'share' | 'pg';
 

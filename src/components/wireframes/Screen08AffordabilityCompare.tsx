@@ -44,7 +44,7 @@ export const Screen08AffordabilityCompare: React.FC<WireframeScreenProps> = ({
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 max-w-[1440px] w-full mx-auto p-6 sm:p-8 flex flex-col justify-between space-y-6">
+      <div className="flex-1 max-w-[1440px] w-full mx-auto p-6 sm:p-8 md:p-10 flex flex-col justify-between space-y-7">
         <div>
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E2E5E9] gap-3">
@@ -58,15 +58,45 @@ export const Screen08AffordabilityCompare: React.FC<WireframeScreenProps> = ({
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 bg-[#E8F4EF] text-[#176B50] text-xs font-semibold rounded-lg">
-                Anchor: {currentWp.name}
+              <span className="px-3 py-1 bg-[#E8F4EF] text-[#176B50] text-xs font-semibold rounded-lg font-mono">
+                Office: {currentWp.name.split('·')[0]}
               </span>
             </div>
           </div>
 
-          <p className="text-xs text-[#5F6A63] mt-3">
+          <p className="text-xs text-[#5F6A63] mt-2.5">
             Direct side-by-side comparison across monthly rent, upfront liquidity locks, peak commute hours, and resulting disposable wealth accrual in {currentCityData.name}.
           </p>
+
+          {/* Action Navigation Bar in Clear View below Step & Subheading */}
+          <div className="mt-5 mb-2 px-5 py-3.5 bg-white border border-[#E2E5E9] rounded-xl shadow-2xs flex flex-wrap items-center justify-between gap-4">
+            <button
+              type="button"
+              onClick={() => onNavigate(7)}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#E2E5E9] bg-white text-xs font-semibold text-[#5F6A63] hover:text-[#18231E] hover:bg-[#F8F9FA] transition-colors cursor-pointer shadow-2xs active:scale-[0.98]"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Previous: Corridor Map</span>
+            </button>
+
+            <div className="flex items-center gap-3 text-xs">
+              <span className="text-[#5F6A63] hidden sm:inline">Selected Corridors:</span>
+              <span className="font-bold text-[#176B50] bg-[#E8F4EF] px-3 py-1.5 rounded-lg font-mono text-xs border border-[#176B50]/20">
+                {comparedList.length} Localities
+              </span>
+              <span className="text-[#8C9690] hidden sm:inline">•</span>
+              <span className="text-[#5F6A63] hidden sm:inline">Top Fit: <strong className="text-[#18231E]">{chosenNeighbourhood.a[0]}</strong></span>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => onNavigate(9)}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#18231E] text-white text-xs font-semibold hover:bg-[#176B50] transition-colors cursor-pointer shadow-xs active:scale-[0.98]"
+            >
+              <span>Proceed to Financial Analysis</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
 
           {/* 3-Column Structured Comparative Matrix Table */}
           <div className="mt-6 bg-white border border-[#E2E5E9] rounded-xl overflow-hidden shadow-2xs">
@@ -197,27 +227,6 @@ export const Screen08AffordabilityCompare: React.FC<WireframeScreenProps> = ({
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Footer Navigation */}
-        <div className="pt-6 border-t border-[#E2E5E9] mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <button
-            type="button"
-            onClick={() => onNavigate(7)}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-[#E2E5E9] text-xs font-semibold text-[#5F6A63] hover:text-[#18231E] transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Map Discovery</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onNavigate(9)}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#18231E] text-white text-xs font-semibold hover:bg-[#176B50] transition-colors cursor-pointer shadow-xs"
-          >
-            <span>Proceed to Financial Waterfall</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
         </div>
       </div>
     </div>

@@ -91,7 +91,7 @@ export const Screen04WorkplaceSelect: React.FC<WireframeScreenProps> = ({
   return (
     <div className="w-full min-h-screen bg-[#F8F9FA] text-[#18231E] flex flex-col select-none">
       <WireframeHeader
-        activeNav="City & Office"
+        activeNav="Office Location"
         onNavigate={onNavigate}
         fromCity={state.from}
         destCityName={currentCityData.name}
@@ -100,55 +100,72 @@ export const Screen04WorkplaceSelect: React.FC<WireframeScreenProps> = ({
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 max-w-[1440px] w-full mx-auto p-4 sm:p-8 flex flex-col justify-between space-y-6">
+      <div className="flex-1 max-w-[1440px] w-full mx-auto p-6 sm:p-8 md:p-10 flex flex-col justify-between space-y-7">
         <div>
-          {/* Step Header */}
+          {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E2E5E9] gap-3">
-            <div className="flex items-center gap-3">
-              <span className="w-6 h-6 rounded-full bg-[#18231E] text-white flex items-center justify-center text-xs font-mono font-bold shrink-0">
-                2
+            <div>
+              <span className="text-[10px] font-mono uppercase text-[#176B50] font-bold tracking-wider">
+                WORKPLACE LOCATION SELECTION
               </span>
-              <div>
-                <span className="text-[10px] font-mono uppercase text-[#176B50] font-bold tracking-wider">
-                  STAGE 02 OF 06 · WORKPLACE COMMUTE ANCHOR
-                </span>
-                <h1 className="text-xl font-bold text-[#18231E]">
-                  Where will your new office be located in {currentCityData.name}?
-                </h1>
-              </div>
+              <h1 className="text-xl sm:text-2xl font-bold text-[#18231E]">
+                Where will your office be located in {currentCityData.name}?
+              </h1>
             </div>
 
             <div className="flex items-center gap-2 text-xs">
-              <span className="text-[#5F6A63]">Destination:</span>
-              <strong className="text-[#18231E]">{currentCityData.name} · {currentCityData.stateName}</strong>
-              <button
-                type="button"
-                onClick={() => onNavigate(3)}
-                className="text-[#176B50] hover:underline font-semibold ml-2 cursor-pointer"
+              <span className="text-[#5F6A63]">Destination Metro:</span>
+              <select
+                value={state.city}
+                onChange={(e) => {
+                  const newCityKey = e.target.value as any;
+                  const newCityData = CITIES[newCityKey] || CITIES.blr;
+                  const defaultHub = newCityData.hubs[0];
+                  const wpObj = {
+                    name: defaultHub[0],
+                    lat: defaultHub[1],
+                    lng: defaultHub[2],
+                  };
+                  setSelectedHubName(defaultHub[0]);
+                  if (onSelectCandidateWp) {
+                    onSelectCandidateWp(wpObj);
+                  }
+                  onUpdateState({
+                    city: newCityKey,
+                    wp: wpObj,
+                    sel: [],
+                  });
+                }}
+                className="px-3 py-1.5 bg-white border border-[#E2E5E9] rounded-lg font-bold text-[#18231E] text-xs focus:outline-none focus:border-[#176B50] cursor-pointer"
               >
-                Change City
-              </button>
+                <option value="blr">Bengaluru (Karnataka)</option>
+                <option value="ncr">Delhi NCR (Gurugram / Noida)</option>
+                <option value="hyd">Hyderabad (Telangana)</option>
+                <option value="mum">Mumbai (Maharashtra)</option>
+                <option value="pun">Pune (Maharashtra)</option>
+                <option value="che">Chennai (Tamil Nadu)</option>
+              </select>
             </div>
           </div>
 
-          <p className="text-xs text-[#5F6A63] mt-2.5">
-            Your office location anchors all daily commute travel durations, peak traffic bottlenecks, and feasible residential corridors. Select a major tech hub or click anywhere on the map to place your campus.
+          <p className="text-xs text-[#5F6A63] mt-3 leading-relaxed">
+            Your office location determines all daily commute travel durations, peak traffic bottlenecks, and feasible residential corridors. Select a major tech hub or click anywhere on the map to place your campus.
           </p>
 
           {/* Action Navigation Bar in Clear View below Step & Subheading */}
-          <div className="mt-4 p-3 bg-white border border-[#E2E5E9] rounded-xl shadow-2xs flex flex-wrap items-center justify-between gap-3">
+          <div className="mt-5 mb-2 px-5 py-3.5 bg-white border border-[#E2E5E9] rounded-xl shadow-2xs flex flex-wrap items-center justify-between gap-4">
             <button
               type="button"
-              onClick={() => onNavigate(3)}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-[#E2E5E9] bg-white text-xs font-semibold text-[#5F6A63] hover:text-[#18231E] hover:bg-[#F8F9FA] transition-colors cursor-pointer shadow-2xs active:scale-[0.98]"
+              onClick={() => onNavigate(1)}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#E2E5E9] bg-white text-xs font-semibold text-[#5F6A63] hover:text-[#18231E] hover:bg-[#F8F9FA] transition-colors cursor-pointer shadow-2xs active:scale-[0.98]"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Previous: Destination City</span>
+              <span>Previous: Overview</span>
             </button>
 
-            <div className="flex items-center gap-2 text-xs">
-              <span className="text-[#5F6A63] hidden sm:inline">Active Anchor:</span>
-              <span className="font-bold text-[#176B50] bg-[#E8F4EF] px-2.5 py-1 rounded-md font-mono text-[11px] border border-[#176B50]/20">
+            <div className="flex items-center gap-2.5 text-xs">
+              <span className="text-[#5F6A63] hidden sm:inline">Active Office:</span>
+              <span className="font-bold text-[#176B50] bg-[#E8F4EF] px-3 py-1.5 rounded-lg font-mono text-xs border border-[#176B50]/20">
                 {activeHub.name}
               </span>
             </div>
@@ -156,7 +173,7 @@ export const Screen04WorkplaceSelect: React.FC<WireframeScreenProps> = ({
             <button
               type="button"
               onClick={handleConfirmWorkplace}
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-lg bg-[#18231E] text-white text-xs font-semibold hover:bg-[#176B50] transition-colors cursor-pointer shadow-xs active:scale-[0.98]"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#18231E] text-white text-xs font-semibold hover:bg-[#176B50] transition-colors cursor-pointer shadow-xs active:scale-[0.98]"
             >
               <span>Confirm Workplace & Set Compensation</span>
               <ArrowRight className="w-4 h-4" />
@@ -213,8 +230,8 @@ export const Screen04WorkplaceSelect: React.FC<WireframeScreenProps> = ({
 
                         {isSelected && (
                           <span className="text-[9px] font-mono font-bold uppercase bg-[#176B50] text-white px-2 py-0.5 rounded shrink-0 flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                            <span>ACTIVE ANCHOR</span>
+                            <Check className="w-3 h-3 stroke-[3]" />
+                            <span>SELECTED</span>
                           </span>
                         )}
                       </div>
@@ -247,7 +264,7 @@ export const Screen04WorkplaceSelect: React.FC<WireframeScreenProps> = ({
                   </span>
                 </div>
                 <div className="flex items-center gap-2 text-[10px] font-mono text-[#5F6A63]">
-                  <span>Anchor: <strong className="text-[#176B50]">{activeHub.name.split('·')[0]}</strong></span>
+                  <span>Office: <strong className="text-[#176B50]">{activeHub.name.split('·')[0]}</strong></span>
                 </div>
               </div>
 
@@ -282,7 +299,7 @@ export const Screen04WorkplaceSelect: React.FC<WireframeScreenProps> = ({
               <div className="p-3 rounded-xl bg-[#F8F9FA] border border-[#E2E5E9] text-xs flex justify-between items-center">
                 <div>
                   <span className="text-[10px] text-[#5F6A63] block uppercase font-mono font-bold">
-                    Target Office Anchor
+                    Target Office Location
                   </span>
                   <strong className="text-[#18231E]">{activeHub.name}</strong>
                   <span className="text-[10px] text-[#5F6A63] font-mono block">

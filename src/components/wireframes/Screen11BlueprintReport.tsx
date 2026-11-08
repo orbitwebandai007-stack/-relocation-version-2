@@ -79,7 +79,7 @@ export const Screen11BlueprintReport: React.FC<WireframeScreenProps> = ({
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 max-w-[1440px] w-full mx-auto p-6 sm:p-8 flex flex-col justify-between space-y-6">
+      <div className="flex-1 max-w-[1440px] w-full mx-auto p-6 sm:p-8 md:p-10 flex flex-col justify-between space-y-7">
         <div>
           {/* Document Header & Actions */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E2E5E9] gap-3">
@@ -130,6 +130,38 @@ export const Screen11BlueprintReport: React.FC<WireframeScreenProps> = ({
                 <span>Export / Print Report</span>
               </button>
             </div>
+          </div>
+
+          {/* Action Navigation Bar in Clear View below Step & Subheading */}
+          <div className="mt-5 mb-2 px-5 py-3.5 bg-white border border-[#E2E5E9] rounded-xl shadow-2xs flex flex-wrap items-center justify-between gap-4">
+            <button
+              type="button"
+              onClick={() => onNavigate(10)}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#E2E5E9] bg-white text-xs font-semibold text-[#5F6A63] hover:text-[#18231E] hover:bg-[#F8F9FA] transition-colors cursor-pointer shadow-2xs active:scale-[0.98]"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Previous: What-If Scenarios</span>
+            </button>
+
+            <div className="flex items-center gap-3 text-xs">
+              <span className="text-[#5F6A63] hidden sm:inline">Evaluation Verdict:</span>
+              <span className="font-bold text-[#176B50] bg-[#E8F4EF] px-3 py-1.5 rounded-lg font-mono text-xs border border-[#176B50]/20">
+                {verdict.badgeLabel}
+              </span>
+              <span className="text-[#8C9690] hidden sm:inline">•</span>
+              <span className="text-[#5F6A63] hidden sm:inline">Surplus: <strong className="text-[#176B50] font-mono">+{formatINR(monthlySurplus)}/mo</strong></span>
+              <span className="text-[#8C9690] hidden sm:inline">•</span>
+              <span className="text-[#5F6A63] hidden sm:inline">Payback: <strong className="text-[#18231E] font-mono">{verdict.economicPaybackMonths || 3.2} Mo</strong></span>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => onNavigate(2)}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#18231E] text-white text-xs font-semibold hover:bg-[#176B50] transition-colors cursor-pointer shadow-xs active:scale-[0.98]"
+            >
+              <span>Proceed to Executive Dashboard</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
 
           {/* Top Recommendation Verdict Banner */}
@@ -277,29 +309,6 @@ export const Screen11BlueprintReport: React.FC<WireframeScreenProps> = ({
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Footer Navigation */}
-        <div className="pt-6 border-t border-[#E2E5E9] mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <button
-            type="button"
-            onClick={() => onNavigate(2)}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-[#E2E5E9] text-xs font-semibold text-[#5F6A63] hover:text-[#18231E] transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Return to Dashboard</span>
-          </button>
-
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => onNavigate(12)}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#18231E] text-white text-xs font-semibold hover:bg-[#176B50] transition-colors cursor-pointer shadow-xs"
-            >
-              <span>View Saved Plans Portfolio</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
           </div>
         </div>
       </div>

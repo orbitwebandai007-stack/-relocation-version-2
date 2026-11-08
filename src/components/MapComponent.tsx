@@ -616,9 +616,6 @@ export const MapComponent: React.FC<MapComponentProps> = ({
             <span style="font-size:12px; font-weight:700; color:#FFFFFF; white-space:nowrap; letter-spacing:-0.01em;">
               ${hubName}
             </span>
-            <span style="font-size:9px; font-family:monospace; font-weight:700; background:#176B50; color:#FFFFFF; padding:2px 6px; border-radius:4px; text-transform:uppercase;">
-              ANCHOR
-            </span>
           `;
           pinContainer.appendChild(markerEl);
         } else {
@@ -706,9 +703,6 @@ export const MapComponent: React.FC<MapComponentProps> = ({
           </span>
           <span style="font-size:12px; font-weight:700; color:#FFFFFF; white-space:nowrap;">
             ${activeCandidate.name}
-          </span>
-          <span style="font-size:9px; font-family:monospace; font-weight:700; background:#176B50; color:#FFFFFF; padding:2px 6px; border-radius:4px; text-transform:uppercase;">
-            ANCHOR
           </span>
         `;
         customContainer.appendChild(customEl);

@@ -37,7 +37,7 @@ export const Screen06LifestylePreferences: React.FC<WireframeScreenProps> = ({
   return (
     <div className="w-full min-h-screen bg-[#F8F9FA] text-[#18231E] flex flex-col select-none">
       <WireframeHeader
-        activeNav="City & Office"
+        activeNav="Compensation"
         onNavigate={onNavigate}
         fromCity={state.from}
         destCityName={currentCityData.name}
@@ -46,22 +46,17 @@ export const Screen06LifestylePreferences: React.FC<WireframeScreenProps> = ({
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 max-w-[1440px] w-full mx-auto p-6 sm:p-8 flex flex-col justify-between space-y-6">
+      <div className="flex-1 max-w-[1440px] w-full mx-auto p-6 sm:p-8 md:p-10 flex flex-col justify-between space-y-7">
         <div>
-          {/* Step Header */}
+          {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E2E5E9] gap-3">
-            <div className="flex items-center gap-3">
-              <span className="w-6 h-6 rounded-full bg-[#18231E] text-white flex items-center justify-center text-xs font-mono font-bold shrink-0">
-                4
+            <div>
+              <span className="text-[10px] font-mono uppercase text-[#176B50] font-bold tracking-wider">
+                LIFESTYLE & ACCOMMODATION PROFILE
               </span>
-              <div>
-                <span className="text-[10px] font-mono uppercase text-[#176B50] font-bold tracking-wider">
-                  STAGE 04 OF 06 · LIFESTYLE & ACCOMMODATION PROFILE
-                </span>
-                <h1 className="text-xl font-bold text-[#18231E]">
-                  How do you plan to live in {currentCityData.name}?
-                </h1>
-              </div>
+              <h1 className="text-xl sm:text-2xl font-bold text-[#18231E]">
+                How do you plan to live in {currentCityData.name}?
+              </h1>
             </div>
 
             <div className="flex items-center gap-2 text-xs">
@@ -70,9 +65,41 @@ export const Screen06LifestylePreferences: React.FC<WireframeScreenProps> = ({
             </div>
           </div>
 
-          <p className="text-xs text-[#5F6A63] mt-3">
+          <p className="text-xs text-[#5F6A63] mt-2.5">
             Your preferences dynamically calibrate monthly recurring burn, upfront rental deposit benchmarks, and filter eligible neighbourhoods.
           </p>
+
+          {/* Action Navigation Bar in Clear View below Step & Subheading */}
+          <div className="mt-5 mb-2 px-5 py-3.5 bg-white border border-[#E2E5E9] rounded-xl shadow-2xs flex flex-wrap items-center justify-between gap-4">
+            <button
+              type="button"
+              onClick={() => onNavigate(5)}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#E2E5E9] bg-white text-xs font-semibold text-[#5F6A63] hover:text-[#18231E] hover:bg-[#F8F9FA] transition-colors cursor-pointer shadow-2xs active:scale-[0.98]"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Previous: Compensation</span>
+            </button>
+
+            <div className="flex items-center gap-3 text-xs">
+              <span className="text-[#5F6A63] hidden sm:inline">Preferences:</span>
+              <span className="font-bold text-[#176B50] bg-[#E8F4EF] px-3 py-1.5 rounded-lg font-mono text-xs border border-[#176B50]/20">
+                {propType.toUpperCase()}
+              </span>
+              <span className="text-[#8C9690] hidden sm:inline">•</span>
+              <span className="text-[#5F6A63] hidden sm:inline">Commute: <strong className="text-[#18231E] uppercase font-mono">{transportMode}</strong></span>
+              <span className="text-[#8C9690] hidden sm:inline">•</span>
+              <span className="text-[#5F6A63] hidden sm:inline">Max: <strong className="text-[#18231E] font-mono">{maxCommuteMin}m</strong></span>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleNext}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#18231E] text-white text-xs font-semibold hover:bg-[#176B50] transition-colors cursor-pointer shadow-xs active:scale-[0.98]"
+            >
+              <span>Proceed to Corridor Discovery</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
 
           {/* 3-Column Preference Matrix */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
@@ -226,27 +253,6 @@ export const Screen06LifestylePreferences: React.FC<WireframeScreenProps> = ({
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Footer Navigation */}
-        <div className="pt-6 border-t border-[#E2E5E9] mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <button
-            type="button"
-            onClick={() => onNavigate(5)}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-[#E2E5E9] text-xs font-semibold text-[#5F6A63] hover:text-[#18231E] transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Previous: Compensation</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={handleNext}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#18231E] text-white text-xs font-semibold hover:bg-[#176B50] transition-colors cursor-pointer shadow-xs"
-          >
-            <span>Proceed to Discover Corridors & Map</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
         </div>
       </div>
     </div>

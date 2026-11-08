@@ -131,7 +131,7 @@ export default function App() {
     setCandidateWp(null);
     setRouteMap(new Map());
     setState(fresh);
-    setActiveScreen(3); // Navigate to Stage 01 (City Select)
+    setActiveScreen(4); // Navigate directly to Stage 01 (Workplace Selection)
   };
 
   // 2. Resume Plan: Resume the user's most recent active relocation journey
